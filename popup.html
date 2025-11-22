@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Cric Updates</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      width: 300px;
+      padding: 10px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #2c3e50;
+    }
+
+    .match-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .match-item {
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+
+    .match-item:hover {
+      background: #eef;
+    }
+
+    .match-item.active {
+      border-color: #3498db;
+      background: #eaf6ff;
+    }
+
+    .teams {
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+
+    .status {
+      font-size: 0.9em;
+      color: #e74c3c;
+    }
+
+    .score {
+      font-size: 0.9em;
+      color: #555;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Live Matches</h2>
+  <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+    <button id="stop-tracking"
+      style="flex: 1; padding: 8px; background: #ff5252; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">Stop
+      Tracking</button>
+    <button id="test-notification"
+      style="padding: 8px; background: #eee; border: 1px solid #ccc; border-radius: 4px; cursor: pointer;">Test</button>
+  </div>
+  <div id="matches-container">
+    Loading...
+  </div>
+  <script src="popup.js"></script>
+</body>
+
+</html>
