@@ -1,23 +1,23 @@
 /* Styles for Popup and Bottom Bar */
 
-/* Bottom Bar Specific - TV Style */
+/* Bottom Bar Specific - TV Style matching screenshot */
 #cric-updates-bar {
   position: fixed;
   bottom: 0px;
   left: 50%;
   transform: translateX(-50%);
-  width: 96%;
-  max-width: 1200px;
-  height: 65px;
-  background: linear-gradient(90deg, #00254d 0%, #003d7a 50%, #00254d 100%);
+  width: 98%;
+  max-width: 1400px;
+  height: 80px;
+  background: linear-gradient(90deg, #001840 0%, #002a5c 50%, #001840 100%);
   color: white;
   z-index: 2147483647;
-  font-family: 'Segoe UI', 'Arial Narrow', sans-serif;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+  font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
   display: flex;
-  border-radius: 6px;
+  border-radius: 0;
   overflow: hidden;
-  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-top: 3px solid rgba(255, 255, 255, 0.1);
 }
 
 .cric-content {
@@ -25,193 +25,203 @@
   width: 100%;
   height: 100%;
   align-items: center;
+  justify-content: space-between;
+  gap: 0px;
+  padding: 0;
 }
 
-/* LEFT: Team & Main Score */
+/* LEFT: Team & Score Section */
 .tv-score-section {
-  flex: 0 0 240px;
+  flex: 0 0 260px;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  background: linear-gradient(to right, #001a33, #00254d);
-  padding: 0 20px;
+  justify-content: flex-start;
+  gap: 8px;
+  padding-left: 15px;
+  padding-right: 10px;
 }
 
 .tv-team-name {
-  font-size: 22px;
-  font-weight: 700;
-  text-transform: uppercase;
-  line-height: 1.1;
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
   letter-spacing: 1px;
 }
 
 .tv-overs {
-  font-size: 13px;
-  color: #aaa;
-  margin-top: 3px;
-  font-weight: 500;
+  font-size: 14px;
+  color: #ccc;
+  font-weight: 600;
 }
 
+/* MAIN SCORE */
 .tv-main-score {
-  font-size: 40px;
+  font-size: 42px;
   font-weight: 900;
-  color: #ffa726;
+  color: #ff9933;
   line-height: 1;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
   letter-spacing: -1px;
 }
 
-/* Divider */
-.tv-divider {
-  width: 2px;
-  height: 55%;
-  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.25), transparent);
-  align-self: center;
-}
-
-/* CENTER: Batsmen */
+/* CENTER: Batsmen - Compact like screenshot */
 .tv-batsmen-section {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 5px;
-  padding: 0 20px;
-  max-width: 350px;
+  gap: 4px;
+  padding: 0 10px;
+  max-width: 300px;
 }
 
 .tv-batsman-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 13px;
+  gap: 10px;
 }
 
 .tv-batsman-name {
+  font-size: 14px;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.8px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  letter-spacing: 0.5px;
+  color: #fff;
+  flex: 1;
 }
 
 .tv-batsman-stats {
   display: flex;
-  gap: 8px;
   align-items: center;
+  gap: 5px;
 }
 
 .tv-batsman-score {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 800;
   color: #fff;
-  min-width: 30px;
+  min-width: 25px;
   text-align: right;
 }
 
 .tv-batsman-balls {
-  font-size: 13px;
-  color: #aaa;
+  font-size: 12px;
+  color: #bbb;
   min-width: 25px;
   text-align: right;
 }
 
 .tv-striker-indicator {
-  color: #ffa726;
-  font-size: 12px;
-  visibility: hidden;
+  color: #ff9933;
+  font-size: 10px;
+  margin-right: 4px;
+  opacity: 0;
 }
 
 .tv-striker-indicator.active {
-  visibility: visible;
+  opacity: 1;
 }
 
-/* INFO BOX (CRR) */
+.tv-divider {
+  width: 1px;
+  height: 70%;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 0 2px;
+}
+
+/* INFO BOX - Blue Lead By / Target box */
 .tv-info-box {
-  flex: 0 0 85px;
+  flex: 0 0 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #29b6f6, #0277bd);
+  background: linear-gradient(135deg, #4a90e2, #2563eb);
   color: #fff;
   text-align: center;
   font-weight: 700;
-  padding: 8px 0;
-  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.2);
+  padding: 6px 8px;
+  gap: 2px;
+  height: 100%;
 }
 
 .tv-info-label {
-  font-size: 9px;
+  font-size: 10px;
   text-transform: uppercase;
-  opacity: 0.9;
+  opacity: 0.95;
   letter-spacing: 0.5px;
 }
 
 .tv-info-value {
-  font-size: 20px;
-  margin: 2px 0;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  font-size: 22px;
+  font-weight: 900;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
 }
 
-/* RIGHT: Bowler & Recent */
+/* RIGHT: Bowler Section - Compact */
 .tv-bowler-section {
-  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 20px;
-  gap: 6px;
-  max-width: 280px;
+  padding: 0 15px;
+  gap: 3px;
+  min-width: 220px;
+  align-items: flex-end;
 }
 
 .tv-bowler-row {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
+  gap: 8px;
 }
 
 .tv-bowler-name {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  color: #fff;
 }
 
 .tv-bowler-figs {
-  font-size: 18px;
-  font-weight: 800;
-  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  color: #bbb;
 }
 
 .tv-recent-row {
   display: flex;
   gap: 3px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  margin-top: 2px;
 }
 
+/* Ball squares like screenshot */
 .tv-ball {
   width: 20px;
   height: 20px;
-  background: rgba(255, 255, 255, 0.95);
-  color: #003d7a;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
   font-size: 11px;
-  font-weight: 900;
+  font-weight: 800;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 3px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .tv-ball.wicket {
-  background: #e53935;
+  background: #dc2626;
   color: white;
+  border-color: #dc2626;
 }
 
 .tv-ball.boundary {
-  background: #43a047;
+  background: #16a34a;
   color: white;
+  border-color: #16a34a;
 }
