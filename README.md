@@ -1,15 +1,14 @@
 # Cricket Live Updates - Browser Extension
 
-A sleek Chromium extension that displays live cricket match updates in a TV broadcast-style bottom bar on any webpage.
+A Chromium extension that displays cricket match updates in a TV broadcast-style bottom bar on supported webpages.
 
-![Extension Preview](https://img.shields.io/badge/Platform-Chrome%20%7C%20Edge%20%7C%20Brave-blue)
-![Update Interval](https://img.shields.io/badge/Updates-Every%205s-green)
+![Supported browsers](https://img.shields.io/badge/Platform-Chrome%20%7C%20Edge%20%7C%20Brave-blue)
 
 ## 🏏 Features
 
 ### Live Match Scorecard
-- **TV Broadcast Style UI** - Professional, non-intrusive floating bar at the bottom of your screen
-- **Real-time Updates** - Refreshes every 5 seconds for near real-time match data
+- **TV Broadcast Style UI** - Floating scorecard bar at the bottom of the page
+- **Automatic Updates** - Fetches scores periodically through the browser's alarm scheduler
 - **Ball-by-Ball Commentary** - See the last 6 balls of the current over with color-coded indicators:
   - 🟢 Green for boundaries (4s & 6s)
   - 🔴 Red for wickets
@@ -40,13 +39,13 @@ A sleek Chromium extension that displays live cricket match updates in a TV broa
 2. Open Chrome/Edge/Brave and navigate to `chrome://extensions/`
 3. Enable **Developer mode** (toggle in top-right corner)
 4. Click **Load unpacked**
-5. Select the extension directory (`Cric Updates`)
+5. Select the repository folder containing `manifest.json` (`Cric-Update` if cloned)
 6. The extension icon will appear in your toolbar
 
 ### For Developers
 ```bash
-git clone <repository-url>
-cd "Cric Updates"
+git clone https://github.com/13pathak/Cric-Update.git
+cd Cric-Update
 # Load the extension as described above
 ```
 
@@ -59,17 +58,16 @@ cd "Cric Updates"
 
 2. **View Live Updates**:
    - The scorecard bar will automatically appear at the bottom of your current webpage
-   - Updates refresh automatically every 5 seconds
-   - The bar stays visible across all tabs
+   - Updates refresh automatically while tracking is active
+   - The bar appears on tabs where the browser permits content scripts; browser settings pages and other restricted pages are excluded
 
 3. **Dismiss**:
-   - Open the popup and deselect the match
-   - Or simply close/reload the extension
+   - Open the popup and click **Stop Tracking**
 
 ## 🎨 UI Highlights
 
-### Professional Design
-- **Dark blue gradient** background for premium look
+### Appearance
+- **Dark blue gradient** background
 - **Centered floating bar** with subtle shadow
 - **Color-coded elements**:
   - Orange/Gold for scores
@@ -86,7 +84,7 @@ cd "Cric Updates"
 
 ### File Structure
 ```
-Cric Updates/
+Cric-Update/
 ├── manifest.json          # Extension configuration
 ├── background.js          # Service worker for data fetching
 ├── content.js            # Content script for UI rendering
@@ -99,13 +97,13 @@ Cric Updates/
 
 ### API Integration
 - **Data Source**: `crickbarservice.heisenapp.com`
-- **Update Frequency**: 5 seconds (configurable in `background.js`)
+- **Update Frequency**: The code requests approximately 5 seconds using `UPDATE_INTERVAL_MINUTES = 0.0833` in `background.js`. Actual timing depends on the browser's alarm scheduling and may be delayed; see the [Chrome alarms API](https://developer.chrome.com/docs/extensions/reference/api/alarms).
 - **Endpoints**:
   - `/matches` - List of live matches
   - `/score/{matchId}` - Detailed match data
 
 ### Key Technologies
-- **Manifest V3** - Latest Chrome extension platform
+- **Manifest V3** - Chrome extension manifest format
 - **Shadow DOM** - Isolated styles to avoid conflicts with host pages
 - **Chrome Storage API** - Persistent match selection
 - **Chrome Alarms API** - Efficient background updates
@@ -113,15 +111,16 @@ Cric Updates/
 ## ⚙️ Configuration
 
 ### Change Update Interval
-Edit `background.js` line 6:
+Edit `UPDATE_INTERVAL_MINUTES` in `background.js`. The value is in minutes; for example, this requests a one-minute interval:
+
 ```javascript
-const UPDATE_INTERVAL_MINUTES = 0.0833; // 5 seconds
-// Change to 0.1667 for 10 seconds
-// Change to 0.33 for 20 seconds
+const UPDATE_INTERVAL_MINUTES = 1;
 ```
 
+Reload the extension after changing it. The requested interval is not a guarantee of exact refresh timing.
+
 ### Adjust Bar Position
-Edit `styles.css` line 6:
+Edit the `bottom` property of `#cric-updates-bar` in `styles.css`:
 ```css
 bottom: 0px; /* Distance from bottom edge */
 ```
@@ -144,13 +143,13 @@ bottom: 0px; /* Distance from bottom edge */
 The extension requires:
 - **`storage`** - Save selected match preference
 - **`alarms`** - Schedule periodic updates
-- **`activeTab`** - Inject scorecard into current tab
-- **`host_permissions`** - Access cricket API
+- **`notifications`** - Show detected wicket and boundary events
+- **`host_permissions`** (`<all_urls>`) - Access the cricket API and display the scorecard on supported pages
 
 ## 🤝 Contributing
 
 Contributions are welcome! Areas for improvement:
-- [ ] Add notification support for wickets/boundaries
+- [ ] Improve wicket/boundary detection between polling intervals
 - [ ] Support for multiple match formats (Test, ODI, T20)
 - [ ] Customizable themes
 - [ ] Detailed scorecard view in popup
@@ -169,6 +168,3 @@ This project is created for personal use. API data is provided by third-party se
 
 For issues or feature requests, please create an issue in the repository.
 
----
-
-**Enjoy live cricket updates while browsing! 🏏**
